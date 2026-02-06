@@ -22,7 +22,8 @@
 Deprecated{% if method.tags.deprecated[0].version %} since {{ method.tags.deprecated[0].version }}{% endif %}
 {{ method.tags.deprecated[0].description }}
 {% endif %}
-{% for tagName,tags in method.tags if tagName in ['link', 'see'] %}
+{% for tagName, tags in method.tags %}
+{% if tagName in ['link', 'see'] %}
 {% if loop.first %}
 
 ##### See Also:
@@ -31,6 +32,7 @@ Deprecated{% if method.tags.deprecated[0].version %} since {{ method.tags.deprec
 {% for tag in tags %}
  * [{{ tag.reference }}]({{ '../' ~ tag.reference|route('url') }})
 {% endfor %}
+{% endif %}
 {% endfor %}
 {% if method.arguments|length > 0 %}
 
