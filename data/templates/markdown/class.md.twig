@@ -20,7 +20,8 @@
 {{ node.description|raw }}
 
 {% endif %}
-{% for tagName,tags in node.tags if tagName in ['example'] %}
+{% for tagName,tags in node.tags %}
+{% if tagName in ['example'] %}
 {% if loop.first %}
 
 ---
@@ -31,6 +32,7 @@
 {{ tag.description|escape }}
 {{ tag.example|escape }}
 {% endfor %}
+{% endif %}
 {% endfor %}
 {% for constant in constants %}
 {%  if loop.first %}
@@ -66,25 +68,31 @@
 ### Details
 
 * File: [{{ node.path }}]({{ '../' ~ path(node.file) }})
-{% for interface in node.interfaces if (interface.getMethods is defined and methods(interface)|length > 0) or (interface.getConstants is defined and constants(interface)|length > 0) %}
+{% for interface in node.interfaces %}
+{% if (interface.getMethods is defined and methods(interface)|length > 0) or (interface.getConstants is defined and constants(interface)|length > 0) %}
 {% if loop.first %}
 * Implements:
 {% endif %}
   * [{{ interface }}]({{ link(interface) }})
+{% endif %}
 {% endfor %}
-{% for trait in node.usedTraits if (trait.getMethods is defined and methods(trait)|length > 0) or (trait.getConstants is defined and constants(trait)|length > 0) %}
+{% for trait in node.usedTraits %}
+{% if (trait.getMethods is defined and methods(trait)|length > 0) or (trait.getConstants is defined and constants(trait)|length > 0) %}
 {% if loop.first %}
 * Uses Traits:
 {% endif %}
   * [{{ trait }}]({{ link(trait) }})
+{% endif %}
 {% endfor %}
-{% for tagName,tags in node.tags if tagName in ['link', 'see'] %}
+{% for tagName,tags in node.tags %}
+{% if tagName in ['link', 'see'] %}
 {% if loop.first %}
 * See Also:
 {% endif %}
 {% for tag in tags %}
   * [{{ tag.reference }}]({{ '../' ~ tag.reference|route('url') }})
 {% endfor %}
+{% endif %}
 {% endfor %}
 {% if constants is not empty %}
 
