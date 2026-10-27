@@ -1,13 +1,13 @@
 {
-    "name": "automattic/phpdoc-markdown",
+    "name": "tine-groupware/phpdoc-markdown",
     "description": "phpDocumentor v3 template that generates Markdown documentation for Github.",
     "keywords" : [ "PHPDoc", "phpDocumentor", "Documentation", "Markdown", "Template", "Github" ],
     "homepage" : "https://github.com/automattic/phpdoc-markdown",
     "license": "MIT",
     "authors": [
         {
-            "name": "Automattic",
-            "homepage": "https://automattic.com"
+            "name": "Metaways",
+            "homepage": "https://www.metaways.de"
         }
     ],
     "require-dev": {
